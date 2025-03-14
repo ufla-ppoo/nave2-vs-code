@@ -304,30 +304,38 @@ public class Cenario
         // pecorre a lista de tiros
         for (Tiro tiro : tiros)
         {
-            // se o tiro e do inimigo e se colidiu com a nave do jogador (viva), trata o tiro tomado pela nave e indica que o tiro sera excluído
+            // se o tiro é do inimigo e se colidiu com a nave do jogador (viva), trata o tiro tomado pela nave e indica que o tiro sera excluído
             if (nave.estaViva() && tiro.getEhDoInimigo() && 
                 colisaoPontoRetangulo(tiro.getPosX(), tiro.getPosY(), tiro.getPosX()+tiro.getLargura(), tiro.getPosY()+tiro.getAltura(),
                                       nave.getPosX(), nave.getPosY(), nave.getPosX()+nave.getLargura(), nave.getPosY()+nave.getAltura()))
             {
-                nave.tomarTiro();                
+                // trata o tiro tomado pela nave
+                nave.tomarTiro();
+                // guarda o tiro na lista de tiros a serem removidos do jogo
                 tirosARemover.add(tiro);
                 
+                // se a nave não está mais viva, indica que a partida terminou
                 if (!nave.estaViva())
                 {
                     gameOver = true;
                 }
             }
-            // se o tiro e da nave do jogador e se colidiu com o inimigo (vivo), trata o tiro tomado pelo inimigo e indica que o tiro sera excluído
+            // se o tiro é da nave do jogador e se colidiu com o inimigo (vivo), trata o tiro tomado pelo inimigo e indica que o tiro sera excluído
             else if (inimigo.estaVivo() && !tiro.getEhDoInimigo() && 
                      colisaoPontoRetangulo(tiro.getPosX(), tiro.getPosY(), tiro.getPosX()+tiro.getLargura(), tiro.getPosY()+tiro.getAltura(),
                                            inimigo.getPosX(), inimigo.getPosY(), inimigo.getPosX()+inimigo.getLargura(), inimigo.getPosY()+inimigo.getAltura()))
             {
-                inimigo.tomarTiro();                                                
+                // trata o tiro tomado pelo inimigo
+                inimigo.tomarTiro();
+                // guarda o tiro na lista de tiros a serem removidos do jogo
                 tirosARemover.add(tiro);
-                                
+                
+                // se o inimigo não está mais vivo
                 if (!inimigo.estaVivo())
                 {
+                    // guarda o momento que o inimigo foi morto
                     tempoUltimoInimigoMorto = tempo;
+                    // contabiliza no placar que o jogador derrotou mais um inimigo
                     placar.contarMorteInimigo();
                 }
             }
