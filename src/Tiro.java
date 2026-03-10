@@ -3,7 +3,6 @@
  * Classe que representa um tiro dado pela nave do jogador ou pelo inimigo
  * 
  * @author Julio César Alves
- * @version 2022-05-31
  */
 public class Tiro
 {

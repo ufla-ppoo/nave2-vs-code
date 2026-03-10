@@ -4,7 +4,6 @@ import java.util.Random;
  * Classe que representa uma nave inimiga no jogo
  *  
  * @author Julio Cesar Alves
- * @version 2016-08-04
  */
 public class Inimigo
 {
@@ -148,17 +147,23 @@ public class Inimigo
         }
     }
     
-    
     /**
-     * Realiza um tiro do inimigo, se ele estiver vivo
+     * Trata quando o inimigo atira, se ele estiver vivo
      * 
-     * @return Retorna o tiro criado, ou null se o inimigo nao atirou
+     * @return Retorna um vetor com os tiros criados, ou null se o inimigo nao atirou
      */
-    public Tiro atirar()
+    public Tiro[] atirar()
     {  
         if (estaVivo)
         {
-            return new Tiro(posX, posY + (int)(altura/2), true);
+            // Cria um vetor de tiros de uma única posição
+            Tiro[] tiros = new Tiro[1];
+            // Cria um tiro que sairá do meio do inimig (altura / 2)
+            Tiro tiro = new Tiro(posX, posY + (int)(altura/2), true);            
+            // Guarda o tiro no vetor
+            tiros[0] = tiro;
+            // Retorna o vetor de tiros
+            return tiros;
         }
         else
         {
@@ -180,11 +185,11 @@ public class Inimigo
     /**
      * Executa a Inteligência Artificial do inimigo, tratando seus movimentos e tiros
      * 
-     * @return retorna o tiro dado pelo inimigo (se ele tiver dado um), caso contrario retorna null
+     * @return retorna os tiros dados pelo inimigo (se ele tiver dado algum), caso contrario retorna null
      */
-    public Tiro executarIA()
+    public Tiro[] executarIA()
     {
-        Tiro tiro = null;
+        Tiro[] tiros = null;
         
         if (estaVivo)
         {
@@ -195,11 +200,11 @@ public class Inimigo
             // atirar com a probabilidade de 1 em 15
             if (random.nextInt(15) < 1)
             {
-                tiro = atirar();
+                tiros = atirar();
             }
         }
         
-        return tiro;
+        return tiros;
     }
     
     /**

@@ -5,7 +5,6 @@ import java.util.HashMap;
  * Representa o placar do jogo
  * 
  * @author Julio César Alves
- * @version 2022-05-31
  */
 public class Placar
 {

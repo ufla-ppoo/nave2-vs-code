@@ -3,7 +3,6 @@
  * Classe que representa uma nave do jogador no jogo
  * 
  * @author Julio Cesar Alves
- * @version 2016-04-08
  */
 public class Nave
 {
@@ -104,7 +103,7 @@ public class Nave
     /**
      * Retorna o texto a ser exibido próximo à nave
      */
-    public String getTextoExibicao()
+    public String getInformacao()
     {
         // atualmente nao retorna nada
         return "";
